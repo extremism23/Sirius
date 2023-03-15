@@ -165,7 +165,7 @@ function EspObject:Construct()
 			healthBarOutline = self:_create("Line", { Thickness = 3, Visible = false }),
 			healthBar = self:_create("Line", { Thickness = 1, Visible = false }),
 			healthText = self:_create("Text", { Center = true, Visible = false }),
-			name = self:_create("Text", { Text = self.player.DisplayName, Center = true, Visible = false }),
+			name = self:_create("Text", { Text = self.interface.sharedSettings.useRealName and self.player.Name or self.player.DisplayName, Center = true, Visible = false }),
 			distance = self:_create("Text", { Center = true, Visible = false }),
 			weapon = self:_create("Text", { Center = true, Visible = false }),
 		},
@@ -541,7 +541,8 @@ local EspInterface = {
 		textFont = 2,
 		limitDistance = false,
 		maxDistance = 150,
-		useTeamColor = false
+		useTeamColor = false,
+		useRealName = false
 	},
 	teamSettings = {
 		enemy = {
