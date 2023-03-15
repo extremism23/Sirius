@@ -311,7 +311,7 @@ function EspObject:Render()
 		healthText.Position = lerp2(barTo, barFrom, self.health/self.maxHealth) - healthText.TextBounds*0.5 - HEALTH_TEXT_OFFSET;
 	end
 
-	visible.name.Visible = enabled and onScreen and options.name;
+	visible.name.Visible = enabled and options.name;
 	if visible.name.Visible then
 		local name = visible.name;
 		name.Size = interface.sharedSettings.textSize;
@@ -321,6 +321,10 @@ function EspObject:Render()
 		name.Outline = options.nameOutline;
 		name.OutlineColor = parseColor(self, options.nameOutlineColor, true);
 		name.Position = (corners.topLeft + corners.topRight)*0.5 - Vector2.yAxis*name.TextBounds.Y - NAME_OFFSET;
+		if (not (self.health > 0)) or (not onScreen) then
+			name.Transparency = name.Transparency - 0.01
+		end
+
 	end
 
 	visible.distance.Visible = enabled and onScreen and self.distance and options.distance;
